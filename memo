@@ -1,0 +1,63 @@
+export default App;
+
+import React from "react";
+import { useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+
+function App() {
+  const [items] = useState(["item-0", "item-1", "item-2"]);
+  //ドラッグ＆ドロップが終了したら呼ばれる関数
+  const onDragEnd = (result) => {
+    console.log(result); //中身を確認
+    const remove = items.splice(result.source.index, 1); //ドラッグ開始要素を１つ削除
+    items.splice(result.destination.index, 0, remove[0]);
+  };
+
+  return (
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Droppable droppableId="droppable">
+        {(provided) => (
+          <div className="droppableArea" ref={provided.innerRef}>
+            <Draggable draggableId={"item-0"} index={0}>
+              {(provided) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.dragHandleProps}
+                  {...provided.draggableProps}
+                >
+                  {items[0]}
+                </div>
+              )}
+            </Draggable>
+            <Draggable draggableId={"item-1"} index={1}>
+              {(provided) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.dragHandleProps}
+                  {...provided.draggableProps}
+                >
+                  {items[1]}
+                </div>
+              )}
+            </Draggable>
+            <Draggable draggableId={"item-2"} index={2}>
+              {(provided) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.dragHandleProps}
+                  {...provided.draggableProps}
+                >
+                  {items[2]}
+                </div>
+              )}
+            </Draggable>
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+    </DragDropContext>
+  );
+}
+
+export default App;
+

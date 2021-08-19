@@ -1,7 +1,7 @@
-import "./App.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import React, { useState } from "react";
 
+//これは無視してください。
 /* const list = ["item0", "item1", "item2"];
 console.log(list);
 const remove = list.splice(0, 1);
@@ -14,6 +14,13 @@ console.log(list); */
 list.map((eigo, index) => {
   console.log(eigo, index)
 }) */
+
+/* const count = 5;
+const serialNumber = Array.from({ length: count }).map((v, k) => k);
+const serialObj = serialNumber.map((k) => ({
+  id: `item-${k}`,
+}));
+console.log(serialObj); */
 
 const getItems = (count) =>
   Array.from({ length: count }, (v, k) => k).map((k) => ({
@@ -101,5 +108,4 @@ function App() {
     </DragDropContext>
   );
 }
-
 export default App;
